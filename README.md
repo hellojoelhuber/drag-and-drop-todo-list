@@ -80,8 +80,6 @@ Also, the Add New button toggles a property `@State var addNewDragging: Bool` wh
     }
 ```
 
-One additional note on `onDragTodo` method for to-do items: the method always returns `.accepted` if the drop is valid or `.unknown` if the drop has no target. An improvement to the UX would be to use the `.rejected` `DragState` when the to-do item is hovering over the Trash button, because then the shadow would be red. However, this is a workaround to the fixed `DrawingConstant`s in the `DragableObject` ViewModifier, and should be avoided, because future revisions to the library may cause a breaking change. The better workaround would be to add a shadow to the to-do item and always return the `DragState` as `.none` (so that the default implementation does not interact with the new shadow), with another means of triggering the shadow color.
-
 #### onDropped
 
 The drop methods take different approaches to performing the drop action as well. The to-do item lets the `acceptDropAction(for:at:)` to determine whether the drop is legal, and the Add New button only calls the `addTodoItem()` method _if_ the drop was legal.
